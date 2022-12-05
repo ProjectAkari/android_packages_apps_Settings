@@ -14180,5 +14180,20 @@
     <string name="bt_le_audio_scan_qr_code_scanner">To start listening, center the QR code below</string>
     <!-- [CHAR LIMIT=NONE] Hint for QR code process failure -->
     <string name="bt_le_audio_qr_code_is_not_valid_format">QR code isn\u0027t a valid format</string>
+    <string name="name_of_branding">ProjectAkari</string>
+    <string name="style_version_branding">Official Build</string>
+    <string name="style_version_flavour">tsuru</string>
+    <string name="style_version_device">Device</string>
+    <string name="style_device_name_text">ProjectAkari on ARM</string>
+    <string name="style_version_cpu">CPU</string>
+    <string name="style_device_cpu_text">Octa-core Max 2,1GHz</string>
+    <string name="style_version_maintainer">Maintainer</string>
+    <string name="style_device_maintainer_text">ItzKaguya</string>
+    <string name="style_version_battery">Battery</string>
+    <string name="style_device_battery_text">4000 mAh</string>
+    <string name="style_version_ram">RAM</string>
+    <string name="style_device_ram_text">2.00 GB</string>
+    <string name="style_version_resolution">Resolution</string>
+    <string name="style_device_screen_res_text">720x1520</string>
 
 </resources>
