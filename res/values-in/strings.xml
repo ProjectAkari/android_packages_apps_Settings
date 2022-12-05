@@ -5789,4 +5789,7 @@
     <string name="find_broadcast_password_dialog_password_error" msgid="243855327674765">"Sandi salah"</string>
     <string name="bt_le_audio_scan_qr_code_scanner" msgid="7614569515419813053">"Untuk mulai mendengarkan, pusatkan kode QR di bawah"</string>
     <string name="bt_le_audio_qr_code_is_not_valid_format" msgid="7821837654128137901">"Format kode QR tidak valid"</string>
+    <string name="style_version_device">Model Perangkat</string>
+    <string name="style_version_battery">Baterai</string>
+    <string name="style_version_resolution">Resolusi Layar</string>
 </resources>
