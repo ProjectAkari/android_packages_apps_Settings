@@ -72,4 +72,11 @@
         settings:enableCopying="true"
         settings:controller="com.android.settings.deviceinfo.firmwareversion.SimpleBuildNumberPreferenceController"/>
 
+    <Preference
+        android:layout="@layout/style_version"
+        android:layout_height="fill_parent"
+        android:selectable="false"
+        android:key="style_version"
+        android:order="-500" />
+
 </PreferenceScreen>
