@@ -14181,4 +14181,23 @@
     <!-- [CHAR LIMIT=NONE] Hint for QR code process failure -->
     <string name="bt_le_audio_qr_code_is_not_valid_format">QR code isn\u0027t a valid format</string>
 
+    <string name="slim_dashboard_summary">Customize your Android</string>
+    <string name="slim_dashboard_title">AkariSettings</string>
+    <string name="slimextensions_settings_title">Welcome to AkariSettings</string>
+    <string name="buttons_summary">Long pres power button torch, Swap buttons etc.</string>
+    <string name="buttons_title">Buttons</string>
+    <string name="gestures_summary">Playback Control, Quick Tap, Lift to check phone etc.</string>
+    <string name="gestures_title">Gestures</string>
+    <string name="lockscreen_summary">Tap to sleep, Media Art, Lockscreen charging info etc.</string>
+    <string name="lockscreen_title">Lock screen</string>
+    <string name="misc_summary">Game Space, Volume panel position, Invert Nav. bar etc.</string>
+    <string name="misc_title">Miscellaneous</string>
+    <string name="notifications_summary">Call vibration, kill app button, Blink LED on call etc.</string>
+    <string name="themes_summary">Change default Device theme. Vivid, Pitch Black themes etc.</string>
+    <string name="themes_title">Themes</string>
+    <string name="quicksettings_summary">QS panel transparency, Battery estimation etc.</string>
+    <string name="quicksettings_title">Quick Settings</string>
+    <string name="statusbar_summary">Network traffic, Battery styles, QS date and clock Settings etc.</string>
+    <string name="statusbar_title">Status bar</string>
+
 </resources>

@@ -209,4 +209,11 @@
 
     <!-- Background for multiple user settings page avatars -->
     <color name="user_avatar_color_bg">?androidprv:attr/colorSurface</color>
+
+    <color name="accent_device_default_dark">@android:color/system_accent1_100</color>
+    <color name="accent_device_default_light">@android:color/system_accent1_600</color>
+    <color name="card_divider">@color/accent_device_default_light</color>
+    <color name="slim_border">@color/accent_device_default_light</color>
+    <color name="slim_icon_tint">@color/accent_device_default_light</color>
+    <color name="slim_card_bg">@android:color/system_neutral1_10</color>
 </resources>

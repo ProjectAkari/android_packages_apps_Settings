@@ -969,4 +969,18 @@
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textDirection">locale</item>
     </style>
+
+    <style name="op_control_text_style_base">
+        <item name="android:breakStrategy">simple</item>
+    </style>
+    <style name="op_control_text_style_h6" parent="@style/op_control_text_style_base">
+        <item name="android:textSize">20.0sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:fontFamily">@android:string/config_headlineFontFamilyMedium</item>
+    </style>
+    <style name="op_control_text_style_h5" parent="@style/op_control_text_style_base">
+        <item name="android:textSize">12.0sp</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="android:fontFamily">@android:string/config_bodyFontFamily</item>
+    </style>
 </resources>

@@ -52,5 +52,10 @@
 
     <!-- Material inverse ripple color, useful for inverted backgrounds. -->
     <color name="ripple_material_inverse">@*android:color/ripple_material_light</color>
+
+    <color name="card_divider">@color/accent_device_default_dark</color>
+    <color name="slim_border">@color/accent_device_default_dark</color>
+    <color name="slim_icon_tint">@color/accent_device_default_dark</color>
+    <color name="slim_card_bg">@android:color/system_neutral1_800</color>
 </resources>
 
