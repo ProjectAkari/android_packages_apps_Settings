@@ -1,439 +1,774 @@
-/*
- * Copyright (C) 2008 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.android.settings;
-
-import static android.provider.Settings.ACTION_PRIVACY_SETTINGS;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.telephony.ims.ImsRcsManager;
 import android.text.TextUtils;
 import android.util.FeatureFlagUtils;
 import android.util.Log;
-
 import com.android.internal.annotations.VisibleForTesting;
-import com.android.settings.biometrics.face.FaceSettings;
-import com.android.settings.core.FeatureFlags;
 import com.android.settings.enterprise.EnterprisePrivacySettings;
 import com.android.settings.network.MobileNetworkIntentConverter;
 import com.android.settings.overlay.FeatureFactory;
 import com.android.settings.safetycenter.SafetyCenterManagerWrapper;
 import com.android.settings.security.SecuritySettingsFeatureProvider;
-
 import com.google.android.setupdesign.util.ThemeHelper;
 
-/**
- * Top-level Settings activity
- */
+/* loaded from: classes.dex */
 public class Settings extends SettingsActivity {
 
-    /*
-    * Settings subclasses for launching independently.
-    */
-    public static class AssistGestureSettingsActivity extends SettingsActivity { /* empty */}
-    public static class BluetoothSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class CreateShortcutActivity extends SettingsActivity { /* empty */ }
-    public static class FaceSettingsActivity extends SettingsActivity { /* empty */ }
-    /** Container for {@link FaceSettings} to use with a pre-defined task affinity. */
-    public static class FaceSettingsInternalActivity extends SettingsActivity { /* empty */ }
-    public static class FingerprintSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class CombinedBiometricSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class CombinedBiometricProfileSettingsActivity extends SettingsActivity { /* empty */ }
+    /* loaded from: classes.dex */
+    public static class AccessibilityDaltonizerSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AccessibilityDetailsSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AccessibilityInversionSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AccessibilitySettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AccountDashboardActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AccountSyncSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AdaptiveBrightnessActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AdvancedConnectedDeviceActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AlarmsAndRemindersActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AlarmsAndRemindersAppActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AndroidBeamSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ApnEditorActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ApnSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AppBubbleNotificationSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AppDashboardActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AppDrawOverlaySettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AppInteractAcrossProfilesSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AppManageExternalStorageActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AppMediaManagementAppsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AppMemoryUsageActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AppNotificationSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AppPictureInPictureSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AppUsageAccessSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AppWriteSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AssistGestureSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AutomaticStorageManagerSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class AvailableVirtualKeyboardActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class BatterySaverScheduleSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class BatterySaverSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class BlueToothPairingActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class BluetoothBroadcastActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class BluetoothDeviceDetailActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class BluetoothFindBroadcastsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class BluetoothSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class BugReportHandlerPickerActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ButtonNavigationSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class CaptioningSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ChangeWifiStateActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ChooseAccountActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class CombinedBiometricProfileSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class CombinedBiometricSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ConfigureNotificationSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ConfigureWifiSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ConnectedDeviceDashboardActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ConversationListSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class CreateShortcutActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class DarkThemeSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class DataSaverSummaryActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class DataUsageSummaryActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class DateTimeSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class DevRunningServicesActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class DevelopmentSettingsDashboardActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class DeviceAdminSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class DisplaySettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class DreamSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ExtensionsSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class FaceSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class FaceSettingsInternalActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class FingerprintSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class GamesStorageActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class GestureNavigationSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class HighPowerApplicationsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class IccLockSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class InteractAcrossProfilesSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class KeyboardLayoutPickerActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class LanguageAndInputSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class LocalePickerActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class LocationSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class LockScreenSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ManageAppExternalSourcesActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ManageApplicationsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ManageAssistActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ManageDomainUrlsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ManageExternalSourcesActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ManageExternalStorageActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ManagedProfileSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class MediaControlsSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class MediaManagementAppsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class MobileDataUsageListActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class MobileNetworkListActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ModuleLicensesActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class MyDeviceInfoActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class NetworkDashboardActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class NetworkProviderSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class NetworkSelectActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class NightDisplaySettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class NightDisplaySuggestionActivity extends NightDisplaySettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class NotificationAccessDetailsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class NotificationAccessSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class NotificationAppListActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class NotificationAssistantSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class NotificationReviewPermissionsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class NotificationStationActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class OneHandedSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class OverlaySettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class PaymentSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class PhysicalKeyboardActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class PictureInPictureSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class PowerMenuSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class PowerUsageSummaryActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class PremiumSmsAccessActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class PrintJobSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class PrintSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class PrivacyControlsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class PrivacySettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class PrivateVolumeForgetActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class PublicVolumeSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ReduceBrightColorsSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class RunningServicesActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class SavedAccessPointsSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ScanningSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class SecurityAdvancedSettings extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class SmartAutoRotateSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class SoundSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class SpellCheckersSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class StorageDashboardActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class StorageUseActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class SystemDashboardActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class TestingSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class TextToSpeechSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class TrustedCredentialsSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class TurnScreenOnSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class UsageAccessSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class UsbDetailsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class UserDictionarySettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class UserSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class VpnSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class VrListenersSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class WallpaperSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class WebViewAppPickerActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class WifiAPITestActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class WifiCallingDisclaimerActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class WifiCallingSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class WifiDetailsSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class WifiDisplaySettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class WifiInfoActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class WifiP2pSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class WifiScanningSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class WifiSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class WriteSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ZenAccessDetailSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ZenAccessSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ZenModeAutomationSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ZenModeEventRuleSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ZenModeScheduleRuleSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
+    public static class ZenModeSettingsActivity extends SettingsActivity {
+    }
+
+    /* loaded from: classes.dex */
     public static class TetherSettingsActivity extends SettingsActivity {
-        // TODO(b/147675042): Clean the override up when we enable the new Fragment persistently.
-        @Override
+        @Override // com.android.settings.SettingsActivity, android.app.Activity
         public Intent getIntent() {
-            return wrapIntentWithAllInOneTetherSettingsIfNeeded(
-                    getApplicationContext(), super.getIntent());
+            return Settings.wrapIntentWithAllInOneTetherSettingsIfNeeded(getApplicationContext(), super.getIntent());
         }
     }
+
+    /* loaded from: classes.dex */
     public static class WifiTetherSettingsActivity extends SettingsActivity {
-        // TODO(b/147675042): Clean the override up when we enable the new Fragment persistently.
-        @Override
+        @Override // com.android.settings.SettingsActivity, android.app.Activity
         public Intent getIntent() {
-            return wrapIntentWithAllInOneTetherSettingsIfNeeded(
-                    getApplicationContext(), super.getIntent());
+            return Settings.wrapIntentWithAllInOneTetherSettingsIfNeeded(getApplicationContext(), super.getIntent());
         }
     }
 
-    private static Intent wrapIntentWithAllInOneTetherSettingsIfNeeded(
-            Context context, Intent superIntent) {
-        if (!FeatureFlagUtils.isEnabled(context, FeatureFlags.TETHER_ALL_IN_ONE)) {
-            return superIntent;
+    /* JADX INFO: Access modifiers changed from: private */
+    public static Intent wrapIntentWithAllInOneTetherSettingsIfNeeded(Context context, Intent intent) {
+        Bundle bundle;
+        if (FeatureFlagUtils.isEnabled(context, "settings_tether_all_in_one")) {
+            Intent intent2 = new Intent(intent);
+            intent2.putExtra(":settings:show_fragment", AllInOneTetherSettings.class.getCanonicalName());
+            Bundle bundleExtra = intent.getBundleExtra(":settings:show_fragment_args");
+            if (bundleExtra != null) {
+                bundle = new Bundle(bundleExtra);
+            } else {
+                bundle = new Bundle();
+            }
+            bundle.putParcelable("intent", intent);
+            intent2.putExtra(":settings:show_fragment_args", bundle);
+            return intent2;
         }
-
-        final Intent modIntent = new Intent(superIntent);
-        modIntent.putExtra(EXTRA_SHOW_FRAGMENT,
-                AllInOneTetherSettings.class.getCanonicalName());
-        Bundle args = superIntent.getBundleExtra(EXTRA_SHOW_FRAGMENT_ARGUMENTS);
-        if (args != null) {
-            args = new Bundle(args);
-        } else {
-            args = new Bundle();
-        }
-        args.putParcelable("intent", superIntent);
-        modIntent.putExtra(EXTRA_SHOW_FRAGMENT_ARGUMENTS, args);
-        return modIntent;
+        return intent;
     }
 
-    public static class VpnSettingsActivity extends SettingsActivity { /* empty */ }
-    /** Activity for Data saver settings. */
-    public static class DataSaverSummaryActivity extends SettingsActivity { /* empty */ }
-    public static class DateTimeSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class PrivateVolumeForgetActivity extends SettingsActivity { /* empty */ }
-    public static class PublicVolumeSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class WifiSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class NetworkProviderSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class NetworkSelectActivity extends SettingsActivity { /* empty */ }
-    /** Activity for the Wi-Fi network details settings. */
-    public static class WifiDetailsSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class WifiP2pSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class AvailableVirtualKeyboardActivity extends SettingsActivity { /* empty */ }
-    public static class KeyboardLayoutPickerActivity extends SettingsActivity { /* empty */ }
-    public static class PhysicalKeyboardActivity extends SettingsActivity { /* empty */ }
-    public static class InputMethodAndSubtypeEnablerActivity extends SettingsActivity { /* empty */ }
-    public static class SpellCheckersSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class LocalePickerActivity extends SettingsActivity { /* empty */ }
-    public static class LanguageAndInputSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class UserDictionarySettingsActivity extends SettingsActivity { /* empty */ }
-    public static class DarkThemeSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class DisplaySettingsActivity extends SettingsActivity { /* empty */ }
-    public static class NightDisplaySettingsActivity extends SettingsActivity { /* empty */ }
-    public static class NightDisplaySuggestionActivity extends NightDisplaySettingsActivity { /* empty */ }
-    public static class SmartAutoRotateSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class MyDeviceInfoActivity extends SettingsActivity { /* empty */ }
-    public static class ModuleLicensesActivity extends SettingsActivity { /* empty */ }
-    public static class ApplicationSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ManageApplicationsActivity extends SettingsActivity { /* empty */ }
-    public static class ManageAssistActivity extends SettingsActivity { /* empty */ }
-    public static class HighPowerApplicationsActivity extends SettingsActivity { /* empty */ }
-    public static class BackgroundCheckSummaryActivity extends SettingsActivity { /* empty */ }
-    public static class StorageUseActivity extends SettingsActivity { /* empty */ }
-    public static class DevelopmentSettingsDashboardActivity extends SettingsActivity { /* empty */ }
-    public static class AccessibilitySettingsActivity extends SettingsActivity { /* empty */ }
-    public static class AccessibilityDetailsSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class CaptioningSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class AccessibilityInversionSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class AccessibilityContrastSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class AccessibilityDaltonizerSettingsActivity extends SettingsActivity { /* empty */ }
-    /** Activity for lockscreen settings. */
-    public static class LockScreenSettingsActivity extends SettingsActivity { /* empty */ }
-    /** Activity for bluetooth pairing settings. */
-    public static class BlueToothPairingActivity extends SettingsActivity { /* empty */ }
-    /** Activity for Reduce Bright Colors. */
-    public static class ReduceBrightColorsSettingsActivity extends SettingsActivity { /* empty */ }
-    /** Activity for the security dashboard. */
+    /* loaded from: classes.dex */
     public static class SecurityDashboardActivity extends SettingsActivity {
-
-        private static final String TAG = "SecurityDashboardActivity";
-
-        @Override
-        protected void onCreate(Bundle savedState) {
-            super.onCreate(savedState);
+        @Override // com.android.settings.SettingsActivity, com.android.settings.core.SettingsBaseActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+        protected void onCreate(Bundle bundle) {
+            super.onCreate(bundle);
             handleSafetyCenterRedirection();
         }
 
-        /** Redirects to SafetyCenter if enabled. */
         @VisibleForTesting
         public void handleSafetyCenterRedirection() {
             if (SafetyCenterManagerWrapper.get().isEnabled(this)) {
                 try {
-                    startActivity(new Intent(Intent.ACTION_SAFETY_CENTER));
+                    startActivity(new Intent("android.intent.action.SAFETY_CENTER"));
                     finish();
                 } catch (ActivityNotFoundException e) {
-                    Log.e(TAG, "Unable to open safety center", e);
+                    Log.e("SecurityDashboardActivity", "Unable to open safety center", e);
                 }
             }
         }
 
-        /** Whether the given fragment is allowed. */
+        @Override // com.android.settings.SettingsActivity
         @VisibleForTesting
-        @Override
-        public boolean isValidFragment(String fragmentName) {
-            return super.isValidFragment(fragmentName)
-                    || (fragmentName != null
-                            && TextUtils.equals(fragmentName, getAlternativeFragmentName()));
+        public boolean isValidFragment(String str) {
+            return super.isValidFragment(str) || (str != null && TextUtils.equals(str, getAlternativeFragmentName()));
         }
 
-        @Override
+        @Override // com.android.settings.SettingsActivity
         public String getInitialFragmentName(Intent intent) {
-            final String alternativeFragmentName = getAlternativeFragmentName();
-            if (alternativeFragmentName != null) {
-                return alternativeFragmentName;
-            }
-
-            return super.getInitialFragmentName(intent);
+            String alternativeFragmentName = getAlternativeFragmentName();
+            return alternativeFragmentName != null ? alternativeFragmentName : super.getInitialFragmentName(intent);
         }
 
         private String getAlternativeFragmentName() {
-            String alternativeFragmentClassname = null;
-            final SecuritySettingsFeatureProvider securitySettingsFeatureProvider =
-                    FeatureFactory.getFactory(this).getSecuritySettingsFeatureProvider();
+            SecuritySettingsFeatureProvider securitySettingsFeatureProvider = FeatureFactory.getFactory(this).getSecuritySettingsFeatureProvider();
             if (securitySettingsFeatureProvider.hasAlternativeSecuritySettingsFragment()) {
-                alternativeFragmentClassname = securitySettingsFeatureProvider
-                        .getAlternativeSecuritySettingsFragmentClassname();
+                return securitySettingsFeatureProvider.getAlternativeSecuritySettingsFragmentClassname();
             }
-            return alternativeFragmentClassname;
+            return null;
         }
     }
-    /** Activity for the Advanced security settings. */
-    public static class SecurityAdvancedSettings extends SettingsActivity { /* empty */ }
-    public static class UsageAccessSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class AppUsageAccessSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class LocationSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ScanningSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class WifiScanningSettingsActivity extends SettingsActivity { /* empty */ }
-    /** Activity for the privacy dashboard. */
+
+    /* loaded from: classes.dex */
     public static class PrivacyDashboardActivity extends SettingsActivity {
-
-        private static final String TAG = "PrivacyDashboardActivity";
-
-        @Override
-        protected void onCreate(Bundle savedState) {
-            super.onCreate(savedState);
+        @Override // com.android.settings.SettingsActivity, com.android.settings.core.SettingsBaseActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+        protected void onCreate(Bundle bundle) {
+            super.onCreate(bundle);
             handleSafetyCenterRedirection();
         }
 
-        /** Redirects to SafetyCenter if enabled. */
         @VisibleForTesting
         public void handleSafetyCenterRedirection() {
-            if (ACTION_PRIVACY_SETTINGS.equals(getIntent().getAction())
-                    && SafetyCenterManagerWrapper.get().isEnabled(this)) {
+            if ("android.settings.PRIVACY_SETTINGS".equals(getIntent().getAction()) && SafetyCenterManagerWrapper.get().isEnabled(this)) {
                 try {
-                    startActivity(new Intent(Intent.ACTION_SAFETY_CENTER));
+                    startActivity(new Intent("android.intent.action.SAFETY_CENTER"));
                     finish();
                 } catch (ActivityNotFoundException e) {
-                    Log.e(TAG, "Unable to open safety center", e);
+                    Log.e("PrivacyDashboardActivity", "Unable to open safety center", e);
                 }
             }
         }
     }
-    public static class PrivacyControlsActivity extends SettingsActivity { /* empty */ }
-    public static class PrivacySettingsActivity extends SettingsActivity { /* empty */ }
+
+    /* loaded from: classes.dex */
     public static class FactoryResetActivity extends SettingsActivity {
-        @Override
-        protected void onCreate(Bundle savedState) {
-            setTheme(SetupWizardUtils.getTheme(this, getIntent()));
-            ThemeHelper.trySetDynamicColor(this);
-            super.onCreate(savedState);
-        }
-
-        @Override
+        @Override // com.android.settings.core.SettingsBaseActivity
         protected boolean isToolbarEnabled() {
             return false;
         }
+
+        @Override // com.android.settings.SettingsActivity, com.android.settings.core.SettingsBaseActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+        protected void onCreate(Bundle bundle) {
+            setTheme(SetupWizardUtils.getTheme(this, getIntent()));
+            ThemeHelper.trySetDynamicColor(this);
+            super.onCreate(bundle);
+        }
     }
+
+    /* loaded from: classes.dex */
     public static class FactoryResetConfirmActivity extends SettingsActivity {
-        @Override
-        protected void onCreate(Bundle savedState) {
-            setTheme(SetupWizardUtils.getTheme(this, getIntent()));
-            ThemeHelper.trySetDynamicColor(this);
-            super.onCreate(savedState);
-        }
-
-        @Override
+        @Override // com.android.settings.core.SettingsBaseActivity
         protected boolean isToolbarEnabled() {
             return false;
         }
-    }
-    public static class RunningServicesActivity extends SettingsActivity { /* empty */ }
-    public static class BatterySaverSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class BatterySaverScheduleSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class AccountSyncSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class AccountSyncSettingsInAddAccountActivity extends SettingsActivity { /* empty */ }
-    public static class DeviceAdminSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class DataUsageSummaryActivity extends SettingsActivity { /* empty */ }
-    public static class MobileDataUsageListActivity extends SettingsActivity { /* empty */ }
-    public static class ConfigureWifiSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class SavedAccessPointsSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class TextToSpeechSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class AndroidBeamSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class WifiDisplaySettingsActivity extends SettingsActivity { /* empty */ }
-    public static class DreamSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class NotificationStationActivity extends SettingsActivity { /* empty */ }
-    public static class UserSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class NotificationAccessSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class NotificationAccessDetailsActivity extends SettingsActivity { /* empty */ }
-    public static class VrListenersSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class PremiumSmsAccessActivity extends SettingsActivity { /* empty */ }
-    public static class PictureInPictureSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class TurnScreenOnSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class AppPictureInPictureSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ZenAccessSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ZenAccessDetailSettingsActivity extends SettingsActivity {}
-    public static class ConditionProviderSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class UsbSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class UsbDetailsActivity extends SettingsActivity { /* empty */ }
-    public static class TrustedCredentialsSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class PaymentSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class PrintSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class PrintJobSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ZenModeSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ZenModeBehaviorSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ZenModeBlockedEffectsSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ZenModeAutomationSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ZenModeScheduleRuleSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ZenModeEventRuleSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class SoundSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ConfigureNotificationSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ConversationListSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class AppBubbleNotificationSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class NotificationAssistantSettingsActivity extends SettingsActivity{ /* empty */ }
-    public static class NotificationAppListActivity extends SettingsActivity { /* empty */ }
-    public static class NotificationReviewPermissionsActivity extends SettingsActivity { /* empty */ }
-    public static class AppNotificationSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ChannelNotificationSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ChannelGroupNotificationSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ManageDomainUrlsActivity extends SettingsActivity { /* empty */ }
-    public static class AutomaticStorageManagerSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class GamesStorageActivity extends SettingsActivity { /* empty */ }
-    public static class GestureNavigationSettingsActivity extends SettingsActivity { /* empty */ }
-    /** Activity to manage 2-/3-button navigation configuration. */
-    public static class ButtonNavigationSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class InteractAcrossProfilesSettingsActivity extends SettingsActivity {
-        /* empty */
-    }
-    public static class AppInteractAcrossProfilesSettingsActivity extends SettingsActivity {
-        /* empty */
+
+        @Override // com.android.settings.SettingsActivity, com.android.settings.core.SettingsBaseActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+        protected void onCreate(Bundle bundle) {
+            setTheme(SetupWizardUtils.getTheme(this, getIntent()));
+            ThemeHelper.trySetDynamicColor(this);
+            super.onCreate(bundle);
+        }
     }
 
-    public static class ApnSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class WifiCallingSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class MemorySettingsActivity extends SettingsActivity { /* empty */ }
-    public static class AppMemoryUsageActivity extends SettingsActivity { /* empty */ }
-    public static class OverlaySettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ManageExternalStorageActivity extends SettingsActivity { /* empty */ }
-    public static class AppManageExternalStorageActivity extends SettingsActivity { /* empty */ }
-    public static class MediaManagementAppsActivity extends SettingsActivity { /* empty */ }
-    public static class AppMediaManagementAppsActivity extends SettingsActivity { /* empty */ }
-    public static class WriteSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ChangeWifiStateActivity extends SettingsActivity { /* empty */ }
-    public static class AppDrawOverlaySettingsActivity extends SettingsActivity { /* empty */ }
-    public static class AppWriteSettingsActivity extends SettingsActivity { /* empty */ }
-
-    public static class ManageExternalSourcesActivity extends SettingsActivity {/* empty */ }
-    public static class ManageAppExternalSourcesActivity extends SettingsActivity { /* empty */ }
-    public static class WallpaperSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class ManagedProfileSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class DeletionHelperActivity extends SettingsActivity { /* empty */ }
-
-    /** Actviity to manage apps with {@link android.Manifest.permission#SCHEDULE_EXACT_ALARM} */
-    public static class AlarmsAndRemindersActivity extends SettingsActivity {/* empty */ }
-    /** App specific version of {@link AlarmsAndRemindersActivity} */
-    public static class AlarmsAndRemindersAppActivity extends SettingsActivity {/* empty */ }
-
-    public static class ApnEditorActivity extends SettingsActivity { /* empty */ }
-    public static class ChooseAccountActivity extends SettingsActivity { /* empty */ }
-    public static class IccLockSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class TestingSettingsActivity extends SettingsActivity { /* empty */ }
-    public static class WifiAPITestActivity extends SettingsActivity { /* empty */ }
-    public static class WifiInfoActivity extends SettingsActivity { /* empty */ }
+    /* loaded from: classes.dex */
     public static class EnterprisePrivacySettingsActivity extends SettingsActivity {
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            if (FeatureFactory.getFactory(this)
-                    .getEnterprisePrivacyFeatureProvider(this)
-                    .showParentalControls()) {
+        @Override // com.android.settings.SettingsActivity, com.android.settings.core.SettingsBaseActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+        public void onCreate(Bundle bundle) {
+            super.onCreate(bundle);
+            if (FeatureFactory.getFactory(this).getEnterprisePrivacyFeatureProvider(this).showParentalControls()) {
                 finish();
-            } else if (!EnterprisePrivacySettings.isPageEnabled(this)) {
+            } else if (EnterprisePrivacySettings.isPageEnabled(this)) {
+            } else {
                 finish();
             }
         }
     }
-    public static class WebViewAppPickerActivity extends SettingsActivity { /* empty */ }
-    public static class AdvancedConnectedDeviceActivity extends SettingsActivity { /* empty */ }
-    public static class BluetoothDeviceDetailActivity extends SettingsActivity { /* empty */ }
-    public static class BluetoothBroadcastActivity extends SettingsActivity { /* empty */ }
-    public static class BluetoothFindBroadcastsActivity extends SettingsActivity { /* empty */ }
-    public static class WifiCallingDisclaimerActivity extends SettingsActivity { /* empty */ }
-    public static class MobileNetworkListActivity extends SettingsActivity {}
-    public static class PowerMenuSettingsActivity extends SettingsActivity {}
+
+    /* loaded from: classes.dex */
     public static class MobileNetworkActivity extends SettingsActivity {
-
-        public static final String TAG = "MobileNetworkActivity";
-        public static final String EXTRA_MMS_MESSAGE = "mms_message";
-        public static final String EXTRA_SHOW_CAPABILITY_DISCOVERY_OPT_IN =
-                "show_capability_discovery_opt_in";
-
         private MobileNetworkIntentConverter mIntentConverter;
 
-        /**
-         * Override of #onNewIntent() requires Activity to have "singleTop" launch mode within
-         * AndroidManifest.xml
-         */
-        @Override
+        @Override // androidx.fragment.app.FragmentActivity, android.app.Activity
         protected void onNewIntent(Intent intent) {
             super.onNewIntent(intent);
-
-            Log.d(TAG, "Starting onNewIntent");
-
-            createUiFromIntent(null /* savedState */, convertIntent(intent));
+            Log.d("MobileNetworkActivity", "Starting onNewIntent");
+            createUiFromIntent(null, convertIntent(intent));
         }
 
-        @Override
+        @Override // com.android.settings.SettingsActivity, android.app.Activity
         public Intent getIntent() {
             return convertIntent(super.getIntent());
         }
 
-        private Intent convertIntent(Intent copyFrom) {
-            if (mIntentConverter == null) {
-                mIntentConverter = new MobileNetworkIntentConverter(this);
+        private Intent convertIntent(Intent intent) {
+            if (this.mIntentConverter == null) {
+                this.mIntentConverter = new MobileNetworkIntentConverter(this);
             }
-            Intent intent = mIntentConverter.apply(copyFrom);
-            return (intent == null) ? copyFrom : intent;
+            Intent apply = this.mIntentConverter.apply(intent);
+            return apply == null ? intent : apply;
         }
 
         public static boolean doesIntentContainOptInAction(Intent intent) {
-            String intentAction = (intent != null ? intent.getAction() : null);
-            return TextUtils.equals(intentAction,
-                    ImsRcsManager.ACTION_SHOW_CAPABILITY_DISCOVERY_OPT_IN);
+            return TextUtils.equals(intent != null ? intent.getAction() : null, "android.telephony.ims.action.SHOW_CAPABILITY_DISCOVERY_OPT_IN");
         }
     }
-
-    /**
-     * Activity for BugReportHandlerPicker.
-     */
-    public static class BugReportHandlerPickerActivity extends SettingsActivity { /* empty */ }
-
-    // Top level categories for new IA
-    public static class NetworkDashboardActivity extends SettingsActivity {}
-    public static class ConnectedDeviceDashboardActivity extends SettingsActivity {}
-    public static class PowerUsageSummaryActivity extends SettingsActivity { /* empty */ }
-    public static class StorageDashboardActivity extends SettingsActivity {}
-    public static class AccountDashboardActivity extends SettingsActivity {}
-    public static class SystemDashboardActivity extends SettingsActivity {}
-
-    /**
-     * Activity for MediaControlsSettings
-     */
-    public static class MediaControlsSettingsActivity extends SettingsActivity {}
-
-    /**
-     * Activity for AppDashboard.
-     */
-    public static class AppDashboardActivity extends SettingsActivity {}
-
-    public static class AdaptiveBrightnessActivity extends SettingsActivity { /* empty */ }
-
-    /**
-     * Activity for OneHandedSettings
-     */
-    public static class OneHandedSettingsActivity extends SettingsActivity { /* empty */ }
 }
